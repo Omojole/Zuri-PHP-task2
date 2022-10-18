@@ -1,10 +1,14 @@
 <?php
+declare(strict_types=1);
+session_start();
+logout();
 function logout(){
-    /*
-Check if the existing user has a session
-if it does
-destroy the session and redirect to login page
-*/
+if($_SESSION){
+    session_destroy;
+    header('Location:../forms/login.html');
+}
+else{
+    echo '<h1>Sorry,you are not logged in<h1>';
+}
 }
 
-echo "HANDLE THIS PAGE";

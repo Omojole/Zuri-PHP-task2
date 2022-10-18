@@ -1,3 +1,7 @@
+<?php 
+declare(strict_types=1);
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +29,8 @@
   </div>
 </nav>
 <div class="container justify-content-center">
-     <h1 class="">Welcome to Zuri Authentication `USERNAME`</h1>
+<?php
+    echo '<h1 class="">Welcome to Zuri Authentication ' .$_SESSION['username'].'</h1>'?>
 </div>
    
 </body>

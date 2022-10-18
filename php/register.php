@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 if(isset($_POST['submit'])){
     $username = $_POST['fullname'];
     $email = $_POST['email'];
@@ -7,7 +8,6 @@ if(isset($_POST['submit'])){
 registerUser($username, $email, $password);
 
 }
-
 function registerUser($username, $email, $password){
     $file=fopen('../storage/users.csv','a');
     $data=[$username,$email,$password];
@@ -18,9 +18,6 @@ function registerUser($username, $email, $password){
         echo 'An error occured during registration';
     };
     fclose($file);
-    //save data into the file
-    
-    // echo "OKAY";
 }
 
 ?>

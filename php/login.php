@@ -1,29 +1,28 @@
 <?php
 declare(strict_types=1);
+session_start();
 if(isset($_POST['submit'])){
-    $username = $_POST['email'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
-
-loginUser($username, $password);
+loginUser($email, $password);
 
 }
 
-function loginUser($username, $password){
+function loginUser($email, $password){
     $file=fopen('../storage/users.csv','r');
     while(!feof($file)){
         $get=fgetcsv($file);
-        if($get[1]!=$username || $get[2]!=$password){
-            header('Location:../forms/login.html');
-            exit();
-        }
-        else{
 
-            header("Location:../dashboard.php");
-            exit();
-        }
+            if($get[1]==$email && $get[2]==$password){
+                $_SESSION['username']=$get[0];
+                header("Location:../dashboard.php");
+                exit();
+            }
     }
-    }
+    header('Location:../forms/login.html');
+
     fclose($file);
+        }
 
 
 
