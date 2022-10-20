@@ -4,7 +4,7 @@ session_start();
 logout();
 function logout(){
 if($_SESSION){
-    session_destroy;
+    session_destroy();
     header('Location:../forms/login.html');
 }
 else{

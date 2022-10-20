@@ -7,7 +7,6 @@ if(isset($_POST['submit'])){
 loginUser($email, $password);
 
 }
-
 function loginUser($email, $password){
     $file=fopen('../storage/users.csv','r');
     while(!feof($file)){
