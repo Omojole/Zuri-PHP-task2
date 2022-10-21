@@ -8,32 +8,26 @@ if(isset($_POST['submit'])){
 }
 
 function resetPassword($email, $newpassword){
-
-
-
-
-
-    $file=fopen('../storage/users.csv','r');
-    while(!feof($file)){
-      $get=fgetcsv($file);
-      $arr=array($get);
-if($get[1]===$email){
-    $get[2]===$newpassword;
-        $file= fopen('../storage/users.csv','w');
-        fputcsv($file,$get);
-echo '<h1>Password change successful<h1>';
-        fclose($file);
-        exit();
+$file=fopen('../storage/users.csv','r');
+$temp=fopen('../storage/temp.csv','w');
+$count=0;
+while(($get=fgetcsv($file))!==false){
+    if($get[1]==$email){
+        $get[2]=$newpassword;
+        $count++;
     }
+    fputcsv($temp,$get);
 }
-      echo '<h1>User does not exist<h1>';
-
+fclose($file);
+fclose($temp);
+unlink('../storage/users.csv');
+rename('../storage/temp.csv','../storage/users.csv');
+if($count>0){
+    echo '<h1>User registered sucessfully</h1>';
+}else{
+    echo '<h1>User does not exist</h1>';
 }
-
-
-
-
-
+}
 
 
 

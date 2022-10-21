@@ -17,13 +17,12 @@ function loginUser($email, $password){
                 header("Location:../dashboard.php");
                 exit();
             }
-    }
-    header('Location:../forms/login.html');
+           else{
+            header('Location:../forms/login.html');
+           } 
+        }
 
     fclose($file);
         }
-
-
-
 
 ?>
